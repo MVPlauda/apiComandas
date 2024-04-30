@@ -1,0 +1,33 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwbGF1ZGEiLCJleHAiOjE3MTMyNzM0NTB9.sol4cjx_HuZG__XzZhVNpr23VLEinp46V2XabbepmoA
+
+### Verbo GET – listar 
+GET http://localhost:8000/cliente/ HTTP/1.1 
+Authorization: Bearer {{token}}
+
+### Verbo GET – listar com id 
+GET http://localhost:8000/cliente/1 HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Verbo POST – adicionar 
+POST http://127.0.0.1:8000/cliente/ HTTP/1.1 
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+"nome" : "João Paulo 'Plauda'", "matricula" : "12345", "cpf" : "01923874656", "telefone" : "49988234567", "login" : "meu_login", "senha" : "bolinhas"
+
+}
+
+### Verbo PUT – atualiza 
+PUT http://127.0.0.1:8000/cliente/2 HTTP/1.1 
+Authorization: Bearer {{token}}
+content-type: application/json
+
+{
+"nome" : "Bolinhas dos Testes", "matricula" : "12345", "cpf" : "12345678909", "telefone" : "49898989", "login" : "meu_login", "senha" : "a"
+
+}
+
+### Verbo DELETE - excluir 
+DELETE http://127.0.0.1:8000/cliente/2 HTTP/1.1 
+Authorization: Bearer {{token}}
