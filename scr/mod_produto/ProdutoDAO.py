@@ -17,6 +17,7 @@ def get_produto(id: int):
         session = db.Session()
         # busca um com filtro
         dados = session.query(ProdutoDB).filter(ProdutoDB.id == id).all()
+        print(dados)
         return dados, 200
     except Exception as e:
         return {"msg": "Erro ao listar", "erro": str(e)}, 404
@@ -40,7 +41,7 @@ def post_produto(corpo: Produto):
     try:
         session = db.Session()
         dados = ProdutoDB(None, corpo.nome, corpo.valor_unitario, corpo.foto, corpo.descricao)
-
+        
         session.add(dados)
         session.commit()
         return {"msg": "Cadastrado com sucesso!", "id": dados.id}, 200
@@ -63,7 +64,7 @@ def put_produto(id: int, corpo: Produto):
         dados.foto = corpo.foto
         session.add(dados)
         session.commit()
-        return {"msg": "Editado com sucesso!", "id": dados.id}, 201
+        return {"msg": "Editado com sucesso!", "id": dados.id}, 200
     except Exception as e:
         session.rollback()
         return {"msg": "Erro ao editar", "erro": str(e)}, 406
@@ -77,7 +78,7 @@ def delete_produto(id: int):
         dados = session.query(ProdutoDB).filter(ProdutoDB.id == id).one()
         session.delete(dados)
         session.commit()
-        return {"msg": "Excluido com sucesso!", "id": dados.id}, 201
+        return {"msg": "Excluido com sucesso!", "id": dados.id}, 200
     except Exception as e:
         session.rollback()
         return {"msg": "Erro ao excluir", "erro": str(e)}, 406

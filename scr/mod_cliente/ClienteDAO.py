@@ -58,6 +58,7 @@ def put_cliente(id: int, corpo: Cliente):
         dados = session.query(ClienteDB).filter(
         ClienteDB.id == id).one()
         dados.nome = corpo.nome
+        dados.login = corpo.login
         dados.cpf = corpo.cpf
         dados.telefone = corpo.telefone
         dados.senha = corpo.senha
@@ -65,7 +66,7 @@ def put_cliente(id: int, corpo: Cliente):
         
         session.add(dados)
         session.commit()
-        return {"msg": "Editado com sucesso!", "id": dados.id}, 201
+        return {"msg": "Editado com sucesso!", "id": dados.id}, 200
     except Exception as e:
         session.rollback()
         return {"msg": "Erro ao editar", "erro": str(e)}, 406
